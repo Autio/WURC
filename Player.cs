@@ -26,6 +26,8 @@ public class Player : Area2D
 	
 	public override void _Process(float delta)
 	{
+		
+		GetNode<Main>("/root/Main").SetBaseScore(-(int)Position.y);
 
 		//var velocity = new Vector2(); // The player's movement vector.
 
