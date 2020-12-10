@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://LevelObjects/Backstripe.png" type="Texture" id=1]
+[ext_resource path="res://LevelObjects/Backstripe.cs" type="Script" id=2]
+
+[node name="Backstripe" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+modulate = Color( 1, 0.996078, 0.803922, 1 )
+self_modulate = Color( 0.780392, 0.764706, 0.764706, 1 )
+show_behind_parent = true
+light_mask = -2147483647
+scale = Vector2( 0.99742, 0.990699 )
+z_index = 5
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

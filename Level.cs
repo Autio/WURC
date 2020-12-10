@@ -5,7 +5,7 @@ public class Level : Node2D
 {
 	// Generate the map background and objects
 	[Export]
-	public PackedScene Bonus, Hazard;
+	public PackedScene Bonus, Hazard, Backstripe;
 	public float bonusRatio = 0.2f;
 
 	private Vector2 _screenSize;
@@ -54,8 +54,6 @@ public class Level : Node2D
 		}
 		else if (roll >= bonusRatio)
 		{
-			Node n = GetNode<Node>("/root/Main");
-
 			// Instantiate hazard
 			var hazardInstance = (RigidBody2D)Hazard.Instance();
 			AddChild(hazardInstance);
@@ -65,5 +63,17 @@ public class Level : Node2D
 		}
 
 	}
+
+	public void AddBackgroundShapes()
+	{
+		var backstripe = (Sprite)Backstripe.Instance();
+		AddChild(backstripe);
+		float playerPos = GetNode<Area2D>("/root/Main/Player").Position.y;
+		GD.Print(playerPos);
+		backstripe.Position = new Vector2(_screenSize.x/2, playerPos - RandRange(800, 900));
+
+	}
+
+
 
 }

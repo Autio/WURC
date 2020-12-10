@@ -48,14 +48,14 @@ public class Player : Area2D
 		{
 			if (Input.IsActionPressed("ui_left"))
 			{
-				power += 0.1f;
+				power += 0.16f;
 				Position -= new Vector2(lateral_speed * delta, 0);
 				
 			}
 			
 			if (Input.IsActionPressed("ui_right"))
 			{
-				power += 0.1f;
+				power += 0.16f;
 				Position += new Vector2(lateral_speed * delta, 0);
 			}
 		}
@@ -73,7 +73,7 @@ public class Player : Area2D
 		{
 			velocity = new Vector2(0, power * 60);
 			Position -= velocity * delta;
-			power -= (0.5f + power / 160f);
+			power -= (0.5f + power / 250f);
 			if ( power < 1.0f)
 			{
 				power = 0;

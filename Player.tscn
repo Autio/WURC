@@ -8,6 +8,7 @@ radius = 35.6501
 height = 81.8701
 
 [node name="Player" type="Area2D"]
+scale = Vector2( 1.07711, 1.02789 )
 script = ExtResource( 1 )
 
 [node name="car" type="Sprite" parent="."]

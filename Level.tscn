@@ -1,10 +1,52 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Level.cs" type="Script" id=1]
 [ext_resource path="res://LevelObjects/Bonus.tscn" type="PackedScene" id=2]
 [ext_resource path="res://LevelObjects/Hazard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://LevelObjects/Backstripe.tscn" type="PackedScene" id=4]
+[ext_resource path="res://LevelObjects/Sidestripe.tscn" type="PackedScene" id=5]
 
-[node name="Node2D" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource( 1 )
 Bonus = ExtResource( 2 )
 Hazard = ExtResource( 3 )
+Backstripe = ExtResource( 4 )
+
+[node name="Sidestripe_left" parent="." instance=ExtResource( 5 )]
+
+[node name="Sidestripe_left2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, -1300 )
+
+[node name="Sidestripe_right" parent="." instance=ExtResource( 5 )]
+position = Vector2( 720, 0 )
+
+[node name="Sidestripe_right2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 720, -1300 )
+
+[node name="LeftGrass" type="ColorRect" parent="."]
+show_behind_parent = true
+margin_left = -396.489
+margin_top = 2000.04
+margin_right = -356.489
+margin_bottom = 1.00002e+08
+grow_vertical = 2
+rect_rotation = 180.0
+rect_scale = Vector2( -11.4023, 2.99565 )
+color = Color( 0.658824, 0.905882, 0.67451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightGrass" type="ColorRect" parent="."]
+show_behind_parent = true
+margin_left = 660.167
+margin_top = 1978.1
+margin_right = 700.167
+margin_bottom = 1.00002e+08
+grow_vertical = 2
+rect_rotation = 180.0
+rect_scale = Vector2( -11.4023, 2.99565 )
+color = Color( 0.658824, 0.905882, 0.67451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

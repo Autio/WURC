@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level.tscn" type="PackedScene" id=2]
+[ext_resource path="res://LevelObjects/Backstripe.tscn" type="PackedScene" id=3]
 
 [node name="Main" type="Node"]
 
@@ -23,52 +24,31 @@ __meta__ = {
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -4.175
-margin_top = -440.0
-margin_right = -4.17499
-margin_bottom = -274.0
+margin_top = -710.0
+margin_bottom = -544.0
 rect_pivot_offset = Vector2( 74.1716, 65.6541 )
 color = Color( 0.945098, 0.945098, 0.945098, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect3" type="ColorRect" parent="."]
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -6.84468
-margin_top = -1675.38
-margin_right = -6.84467
-margin_bottom = -1509.38
-rect_pivot_offset = Vector2( 74.1716, 65.6541 )
-color = Color( 0.945098, 0.945098, 0.945098, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Backstripe" parent="." instance=ExtResource( 3 )]
+position = Vector2( 338.04, 0 )
+scale = Vector2( 1.00158, 1 )
 
-[node name="ColorRect4" type="ColorRect" parent="."]
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -4.175
-margin_top = -2640.0
-margin_right = -4.17499
-margin_bottom = -2474.0
-rect_pivot_offset = Vector2( 74.1716, 65.6541 )
-color = Color( 0.945098, 0.945098, 0.945098, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Level" parent="." instance=ExtResource( 2 )]
+scale = Vector2( 1, 1.14714 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 356.471, 997.33 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( 0, -360 )
+scale = Vector2( 1, 0.969438 )
 current = true
-limit_left = -50
-limit_right = 770
+limit_left = -100
+limit_top = -100000000
+limit_right = 820
 limit_bottom = 100000000
 limit_smoothed = true
 smoothing_enabled = true
@@ -76,8 +56,4 @@ smoothing_speed = 30.0
 drag_margin_left = 1.0
 drag_margin_top = 0.8
 drag_margin_right = 1.0
-
-[node name="Node2D" parent="." instance=ExtResource( 2 )]
-
-[node name="Node2D2" parent="." instance=ExtResource( 2 )]
 [connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]

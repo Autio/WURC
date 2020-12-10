@@ -1,0 +1,15 @@
+[gd_scene format=2]
+
+[node name="GUI" type="CanvasLayer"]
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchor_right = 1.0
+margin_right = 6.10352e-05
+margin_bottom = 72.0
+rect_min_size = Vector2( 0, 72 )
+text = "1,000,000,000"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
