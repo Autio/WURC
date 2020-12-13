@@ -54,14 +54,14 @@ public class Player : Area2D
 		{
 			if (Input.IsActionPressed("ui_left"))
 			{
-				power += 0.08f;
+				power += 0.09f;
 				Position -= new Vector2(lateral_speed * delta, 0);
 				
 			}
 			
 			if (Input.IsActionPressed("ui_right") && !Input.IsActionPressed("ui_left"))
 			{
-				power += 0.08f;
+				power += 0.09f;
 				Position += new Vector2(lateral_speed * delta, 0);
 			}
 		}
@@ -84,9 +84,13 @@ public class Player : Area2D
 			{
 				power -= (0.5f + power / 150f);
 
-			} else
+			} else if (power > 20)
 			{
-				power -= (0.14f + power / 750f);
+				power -= (0.08f + power / 1000f);
+			}
+			else
+			{
+				power -= (0.14f + power / 1000f);
 			}
 			if (power < 1.0f)
 			{
@@ -104,6 +108,8 @@ public class Player : Area2D
 				{
 					GD.Print("Creating bonus");
 					GetNode<Level>("/root/Main/Level").CreateBonus();
+					GetNode<Level>("/root/Main/Level").CreateHazard();
+
 					creating = false;
 				}
 			} else
@@ -204,7 +210,7 @@ private void _on_Player_body_entered(object body)
 					GD.Print("Bonus hit");
 					var bonusInstance = (Label)BonusEffect.Instance();
 					AddChild(bonusInstance);
-					power += 25f;
+					power += 15f;
 					// Do something to the player
 					//b.Transform.Scaled(new Vector2(3, 3));
 					// Reduce power

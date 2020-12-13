@@ -3,6 +3,8 @@ using System;
 
 public class Backstripe : Sprite
 {
+	[Export]
+	public bool TrackIncrements = false;
 	// Declare member variables here. Examples:
 	// private int a = 2;
 	// private string b = "text";
@@ -21,7 +23,10 @@ public class Backstripe : Sprite
 		QueueFree();
 
 		// Update the ticker on the Level script too
-		GetNode<Level>("/root/Main/Level").IncrementTrackCount();
+		if (TrackIncrements)
+		{
+			GetNode<Level>("/root/Main/Level").IncrementTrackCount();
+		}
 	}
 
 

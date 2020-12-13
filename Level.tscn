@@ -12,13 +12,13 @@ script = ExtResource( 1 )
 Bonus = ExtResource( 2 )
 Hazard = ExtResource( 3 )
 Backstripe = ExtResource( 4 )
-TarmacColors = PoolColorArray( 0.427451, 0.419608, 0.419608, 1, 0.188235, 0.666667, 0.631373, 1, 0.756863, 0.427451, 0.262745, 1, 0.431373, 0.223529, 0.6, 1, 0.0941176, 0.0862745, 0.0862745, 1, 1, 0.615686, 0.596078, 1, 0.219608, 0.286275, 0.203922, 1, 0.384314, 0.101961, 0.109804, 1, 0.184314, 0.313726, 0.666667, 1, 0.537255, 0.537255, 0.301961, 1 )
+TarmacColors = PoolColorArray( 0.427451, 0.419608, 0.419608, 1, 0.188235, 0.666667, 0.631373, 1, 0.756863, 0.427451, 0.262745, 1, 0.698039, 0.380392, 0.956863, 1, 0.164706, 0.137255, 0.137255, 1, 1, 0.615686, 0.596078, 1, 0.85098, 0.937255, 0.831373, 1, 0.956863, 0.301961, 0.321569, 0.784314, 0.184314, 0.313726, 0.666667, 1, 0.537255, 0.537255, 0.301961, 1 )
 
 [node name="Tarmac" type="ColorRect" parent="."]
 margin_left = 10.0796
 margin_top = -1.00001e+07
 margin_right = 730.08
-margin_bottom = 9860.0
+margin_bottom = 9864.0
 mouse_filter = 2
 color = Color( 0.427451, 0.419608, 0.419608, 1 )
 __meta__ = {
@@ -52,9 +52,9 @@ __meta__ = {
 
 [node name="RightGrass" type="ColorRect" parent="."]
 show_behind_parent = true
-margin_left = 660.167
+margin_left = 659.045
 margin_top = 1978.1
-margin_right = 700.167
+margin_right = 699.045
 margin_bottom = 1.00002e+08
 grow_vertical = 2
 rect_rotation = 180.0
@@ -65,9 +65,30 @@ __meta__ = {
 }
 
 [node name="Laneline" parent="." instance=ExtResource( 6 )]
+position = Vector2( -160, 0 )
+TrackIncrements = true
 
 [node name="Laneline2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 0, -1408 )
+position = Vector2( -160, -1408 )
 
 [node name="Laneline3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 0, -2816 )
+position = Vector2( -160, -2816 )
+
+[node name="Laneline4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 160, 0 )
+
+[node name="Laneline5" parent="." instance=ExtResource( 6 )]
+position = Vector2( 160, -1408 )
+
+[node name="Laneline6" parent="." instance=ExtResource( 6 )]
+position = Vector2( 160, -2816 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 351.0
+margin_top = -1e+07
+margin_right = 369.0
+margin_bottom = 9.001e+07
+rect_min_size = Vector2( 16, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
