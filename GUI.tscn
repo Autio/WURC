@@ -1,14 +1,30 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Art/font1.tres" type="DynamicFont" id=1]
 [ext_resource path="res://LevelObjects/NoticeLines.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Art/GUI.tres" type="StyleBox" id=3]
+[ext_resource path="res://Art/Inconsolata/Inconsolata-Regular.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.306381, 0.322813, 0.378906, 0.921569 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+
+[sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 28
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.305882, 0.321569, 0.380392, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.431373, 0.666667, 0.431373, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="GUI" type="CanvasLayer"]
 
@@ -24,10 +40,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GreenNoticeLine" parent="." instance=ExtResource( 2 )]
+[node name="GreenNoticeLineOld" parent="." instance=ExtResource( 2 )]
 position = Vector2( 360, 8 )
 
-[node name="Panel" type="Panel" parent="."]
+[node name="ScorePanel" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 0.5
 anchor_right = 0.5
@@ -35,7 +51,7 @@ margin_left = -260.0
 margin_top = 32.0
 margin_right = 260.0
 margin_bottom = 114.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -45,10 +61,61 @@ anchor_right = 1.0
 margin_top = 34.0
 margin_bottom = 106.0
 rect_min_size = Vector2( 0, 72 )
-custom_fonts/font = ExtResource( 1 )
-text = "1,000,000,000"
+custom_fonts/font = SubResource( 3 )
+text = "0"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel2" type="Label" parent="ScoreLabel"]
+visible = false
+anchor_right = 1.0
+margin_top = 72.0
+margin_right = 4.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 0, 72 )
+custom_fonts/font = SubResource( 5 )
+text = "Drive done! 
+Spin the mouse wheel to go again."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel3" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -360.0
+margin_top = -34.0
+margin_right = 360.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighscoreLabel" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 1200.0
+margin_right = -9.99994
+margin_bottom = 1280.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = ExtResource( 1 )
+text = "Highscore: 0"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GreenNoticeLine" type="Panel" parent="."]
+margin_right = 128.0
+margin_bottom = 18.0
+custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

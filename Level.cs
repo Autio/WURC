@@ -15,7 +15,7 @@ public class Level : Node2D
 
 	public int trackIncrements;
 
-	public Node2D GreenNoticeLine;
+	public Panel GreenNoticeLine;
 	private Vector2 _screenSize;
 	public List<RigidBody2D> UpcomingBonuses = new List<RigidBody2D>();
 
@@ -24,7 +24,7 @@ public class Level : Node2D
 	{
 		_screenSize = GetViewport().Size;
 		Tarmac = GetNode<ColorRect>("/root/Main/Level/Tarmac");
-		GreenNoticeLine = GetNode<Node2D>("/root/Main/GUI/GreenNoticeLine");
+		GreenNoticeLine = GetNode<Panel>("/root/Main/GUI/GreenNoticeLine");
 		Tarmac.Color = TarmacColors[(int)RandRange(0, TarmacColors.Length)];
 	}
 	// How often do bonuses appear as opposed to hazards?
@@ -39,8 +39,7 @@ public class Level : Node2D
 			// The difference between the centre X and the camera position needs to offset the guide line drawing
 			float xDiff = _screenSize.x / 2 - GetNode<Camera2D>("/root/Main/Player/Camera2D").GetCameraScreenCenter().x;
 
-			GD.Print(xDiff);
-			GreenNoticeLine.Position = (new Vector2(xDiff + UpcomingBonuses[0].Position.x, GreenNoticeLine.Position.y));
+			GreenNoticeLine.RectPosition = (new Vector2(xDiff + UpcomingBonuses[0].Position.x - GreenNoticeLine.RectSize.x / 2, GreenNoticeLine.RectPosition.y));
 		}
 
 		if (Input.IsActionPressed("Spawn"))
@@ -110,8 +109,7 @@ public class Level : Node2D
 		var backstripe = (Sprite)Backstripe.Instance();
 		AddChild(backstripe);
 		float playerPos = GetNode<Area2D>("/root/Main/Player").Position.y;
-		GD.Print(playerPos);
-		backstripe.Position = new Vector2(_screenSize.x/2, playerPos - RandRange(800, 900));
+		backstripe.Position = new Vector2(_screenSize.x / 2, playerPos - RandRange(800, 900));
 
 	}
 	

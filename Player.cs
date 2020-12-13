@@ -35,7 +35,7 @@ public class Player : Area2D
 	{
 		//DrawLine(Position, new Vector2(Position.x, Position.y + 100), new Color(255, 0, 0), 1);
 		// Set the basic player score on the 
-		GetNode<Main>("/root/Main").SetBaseScore(-(int)Position.y);
+		
 
 		if (Input.IsActionPressed("ui_down"))
 		{
@@ -77,6 +77,7 @@ public class Player : Area2D
 		}
 		if (driving)
 		{
+			GetNode<Main>("/root/Main").SetBaseScore((int)distance);
 			velocity = new Vector2(0, power * 60);
 			Position -= velocity * delta;
 			if(power > 70)
@@ -110,11 +111,14 @@ public class Player : Area2D
 				creating = true;
 			}
 
-
 			// When the vehicle has stopped
 			if (velocity.Length() <= 0 || velocity.y < 0)
 			{
+				// The game is over
+				GetNode<Main>("/root/Main").GameOver();
+				GD.Print("Stopped driving");
 				driving = false;
+				distance = 0;
 				ToggleExhaust();
 
 			}
@@ -127,6 +131,8 @@ public class Player : Area2D
 			InputEventMouseButton emb = (InputEventMouseButton)@event;
 			if(!driving)
 			{
+				GetNode<Main>("/root/Main").GameStart();
+
 				if (emb.IsPressed()){
 					if(Input.IsActionPressed("middle_button")){
 						charging = true;
