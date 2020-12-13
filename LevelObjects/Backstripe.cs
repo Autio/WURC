@@ -19,6 +19,9 @@ public class Backstripe : Sprite
 		GD.Print("I have left the stage");
 		GetNode<Level>("/root/Main/Level").AddBackgroundShapes();
 		QueueFree();
+
+		// Update the ticker on the Level script too
+		GetNode<Level>("/root/Main/Level").IncrementTrackCount();
 	}
 
 

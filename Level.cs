@@ -7,7 +7,13 @@ public class Level : Node2D
 	// Generate the map background and objects
 	[Export]
 	public PackedScene Bonus, Hazard, Backstripe;
+	[Export]
+	public Color[] TarmacColors;
+	ColorRect Tarmac;
+
 	public float bonusRatio = 0.2f;
+
+	public int trackIncrements;
 
 	public Node2D GreenNoticeLine;
 	private Vector2 _screenSize;
@@ -17,23 +23,24 @@ public class Level : Node2D
 	public override void _Ready()
 	{
 		_screenSize = GetViewport().Size;
+		Tarmac = GetNode<ColorRect>("/root/Main/Level/Tarmac");
 		GreenNoticeLine = GetNode<Node2D>("/root/Main/GUI/GreenNoticeLine");
+		Tarmac.Color = TarmacColors[(int)RandRange(0, TarmacColors.Length)];
 	}
 	// How often do bonuses appear as opposed to hazards?
 
 	private Random _random = new Random();
 
-
 	public override void _Process(float delta)
 	{
-		if(UpcomingBonuses.Count > 0)
+		if (UpcomingBonuses.Count > 0)
 		{
 
 			// The difference between the centre X and the camera position needs to offset the guide line drawing
 			float xDiff = _screenSize.x / 2 - GetNode<Camera2D>("/root/Main/Player/Camera2D").GetCameraScreenCenter().x;
 
 			GD.Print(xDiff);
-			GreenNoticeLine.Position = (new Vector2(xDiff + UpcomingBonuses[0].Position.x, GreenNoticeLine.Position.y));// GetNode<Camera2D>("/root/Main/Player/Camera2D").GetCameraPosition().y));
+			GreenNoticeLine.Position = (new Vector2(xDiff + UpcomingBonuses[0].Position.x, GreenNoticeLine.Position.y));
 		}
 
 		if (Input.IsActionPressed("Spawn"))
@@ -48,6 +55,16 @@ public class Level : Node2D
 	{
 		return (float)_random.NextDouble() * (max - min) + min;
 	}
+
+	public void IncrementTrackCount()
+	{
+		trackIncrements++;
+		if(trackIncrements % 10 == 0)
+		{
+			Tarmac.Color = TarmacColors[(int)RandRange(0, TarmacColors.Length)];
+		}
+	}
+		
 
 	public void CreateLevelThing()
 	{
@@ -97,4 +114,15 @@ public class Level : Node2D
 		backstripe.Position = new Vector2(_screenSize.x/2, playerPos - RandRange(800, 900));
 
 	}
+	
+	
+	private void _on_Button_pressed()
+	{
+		// Replace with function body.
+	}
+
+
 }
+
+
+

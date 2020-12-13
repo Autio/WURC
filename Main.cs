@@ -1,6 +1,12 @@
 using Godot;
 using System;
 
+// TODO | Road background movement
+// DONE | Road background colour updating in periods
+// TODO | Hazard generation and functionality
+// TODO | High score display
+// TODO | Score reset when starting to ride again 
+
 public class Main : Node
 {
 	// Declare member variables here. Examples:

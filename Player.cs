@@ -23,7 +23,7 @@ public class Player : Area2D
 
 	float power = 0;
 	float lateral_speed = 500.0f; // How fast can the car go from side to side
-	float distance = 0;
+	public float distance = 0;
 	
 	bool charging = false;
 	bool driving = false;
@@ -131,10 +131,10 @@ public class Player : Area2D
 					if(Input.IsActionPressed("middle_button")){
 						charging = true;
 						if (emb.ButtonIndex == (int)ButtonList.WheelUp){
-							power += 8.0f;
+							power += 6.0f;
 						}
 						if (emb.ButtonIndex == (int)ButtonList.WheelDown){
-							power -= 8.0f;
+							power -= 6.0f;
 						}
 					}
 					GD.Print(power);
