@@ -8,22 +8,28 @@ public class Main : Node
 	// private string b = "text";
 	int score;
 	int baseScore;
+	Label scoreLabel;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
+		scoreLabel = GetNode<Label>("/root/Main/GUI/ScoreLabel");
 	}
 
 	
 	public void SetBaseScore(int s)
 	{
 		baseScore = s;
-
+		if(baseScore < 0)
+		{
+			baseScore = 0;
+		}
+		UpdateScore();
 	}
 	
 	void UpdateScore()
 	{
-		
+
+		scoreLabel.Text = baseScore.ToString("N0");
 	}
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Art/Untitled design (4).png" type="Texture" id=1]
+[ext_resource path="res://Art/efe.png" type="Texture" id=1]
 [ext_resource path="res://LevelObjects/Bonus.cs" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -17,4 +17,13 @@ texture = ExtResource( 1 )
 position = Vector2( -0.280609, 0 )
 scale = Vector2( 2.6, 2.6 )
 shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2( -0.280609, 0 )
+scale = Vector2( 2.6, 2.6 )
+shape = SubResource( 1 )
 [connection signal="body_entered" from="." to="." method="_on_Bonus_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_Bonus_body_shape_entered"]

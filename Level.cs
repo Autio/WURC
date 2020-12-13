@@ -64,6 +64,16 @@ public class Level : Node2D
 
 	}
 
+	public void CreateBonus()
+	{
+			// Instantiate bonus
+			var bonusInstance = (RigidBody2D)Bonus.Instance();
+			AddChild(bonusInstance);
+			float player = GetNode<Player>("/root/Main/Player").Position.y;
+			bonusInstance.Position = new Vector2(RandRange(60, _screenSize.x - 60), player - RandRange(1280,1880));
+
+	}
+
 	public void AddBackgroundShapes()
 	{
 		var backstripe = (Sprite)Backstripe.Instance();
@@ -73,7 +83,4 @@ public class Level : Node2D
 		backstripe.Position = new Vector2(_screenSize.x/2, playerPos - RandRange(800, 900));
 
 	}
-
-
-
 }

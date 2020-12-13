@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Bonus : RigidBody2D
+public class Horps : Label
 {
 	// Declare member variables here. Examples:
 	// private int a = 2;
@@ -13,22 +13,15 @@ public class Bonus : RigidBody2D
 		
 	}
 
+private void _on_Timer_timeout()
+{
+ QueueFree();   // Replace with function body.
+}
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
 //  {
 //      
-
-   private void _on_Bonus_body_entered(object body)
-{
-	GD.Print("EntereD");
-	
-	if(body is Area2D)
-	// Replace with function body.
-	{
-		Transform.Scaled(new Vector2(3,3));
-	}
-}
-
+//  }
 }
 
 
