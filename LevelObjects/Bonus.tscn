@@ -19,11 +19,8 @@ scale = Vector2( 2.6, 2.6 )
 shape = SubResource( 1 )
 one_way_collision = true
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2( -0.280609, 0 )
-scale = Vector2( 2.6, 2.6 )
-shape = SubResource( 1 )
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 [connection signal="body_entered" from="." to="." method="_on_Bonus_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="_on_Bonus_body_shape_entered"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

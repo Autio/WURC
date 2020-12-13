@@ -67,4 +67,7 @@ drag_margin_right = 1.0
 [node name="Bonus" parent="." instance=ExtResource( 6 )]
 position = Vector2( 356.359, 277.96 )
 continuous_cd = 1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.27451, 0.27451, 0.27451, 1 )
 [connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]

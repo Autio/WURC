@@ -8,6 +8,7 @@ public class Main : Node
 	// private string b = "text";
 	int score;
 	int baseScore;
+	int highScore;
 	Label scoreLabel;
 
 	// Called when the node enters the scene tree for the first time.
@@ -27,9 +28,19 @@ public class Main : Node
 		UpdateScore();
 	}
 	
+	public void ResetScore()
+	{
+		baseScore = 0;
+		score = 0;
+	}
 	void UpdateScore()
 	{
-
-		scoreLabel.Text = baseScore.ToString("N0");
+		score = baseScore;
+		// add some modifiers to the score
+		scoreLabel.Text = score.ToString("N0");
+		if(score > highScore)
+		{
+			highScore = score;
+		}
 	}
 }

@@ -3,6 +3,8 @@ using System;
 
 public class Player : Area2D
 {
+	
+
 	// Declare member variables here. Examples:
 	// private int a = 2;
 	// private string b = "text";
@@ -83,7 +85,7 @@ public class Player : Area2D
 
 			} else
 			{
-				power -= (0.16f + power / 750f);
+				power -= (0.14f + power / 750f);
 			}
 			if (power < 1.0f)
 			{
@@ -129,10 +131,10 @@ public class Player : Area2D
 					if(Input.IsActionPressed("middle_button")){
 						charging = true;
 						if (emb.ButtonIndex == (int)ButtonList.WheelUp){
-							power += 7.0f;
+							power += 8.0f;
 						}
 						if (emb.ButtonIndex == (int)ButtonList.WheelDown){
-							power -= 7.0f;
+							power -= 8.0f;
 						}
 					}
 					GD.Print(power);
@@ -141,9 +143,11 @@ public class Player : Area2D
 				{
 					GD.Print("Driving");
 					driving = true;
-
-
 					charging = false;
+					if(!exhaust)
+					{
+						ToggleExhaust();
+					}
 				}
 			}
 		}
@@ -170,7 +174,6 @@ public class Player : Area2D
 		Transform2D canvas_transform = GetViewport().CanvasTransform;
 		canvas_transform.origin = -GetGlobalPosition() + _screenSize / 2.0f;
 		GetViewport().SetCanvasTransform(canvas_transform);
-		GD.Print(canvas_transform);
 	}
 
 private void _on_Player_body_entered(object body)

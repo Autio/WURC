@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class Level : Node2D
 {
@@ -8,12 +9,15 @@ public class Level : Node2D
 	public PackedScene Bonus, Hazard, Backstripe;
 	public float bonusRatio = 0.2f;
 
+	public Node2D GreenNoticeLine;
 	private Vector2 _screenSize;
+	public List<RigidBody2D> UpcomingBonuses = new List<RigidBody2D>();
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_screenSize = GetViewport().Size;
+		GreenNoticeLine = GetNode<Node2D>("/root/Main/GUI/GreenNoticeLine");
 	}
 	// How often do bonuses appear as opposed to hazards?
 
@@ -22,6 +26,16 @@ public class Level : Node2D
 
 	public override void _Process(float delta)
 	{
+		if(UpcomingBonuses.Count > 0)
+		{
+
+			// The difference between the centre X and the camera position needs to offset the guide line drawing
+			float xDiff = _screenSize.x / 2 - GetNode<Camera2D>("/root/Main/Player/Camera2D").GetCameraScreenCenter().x;
+
+			GD.Print(xDiff);
+			GreenNoticeLine.Position = (new Vector2(xDiff + UpcomingBonuses[0].Position.x, GreenNoticeLine.Position.y));// GetNode<Camera2D>("/root/Main/Player/Camera2D").GetCameraPosition().y));
+		}
+
 		if (Input.IsActionPressed("Spawn"))
 		{
 
@@ -71,7 +85,7 @@ public class Level : Node2D
 			AddChild(bonusInstance);
 			float player = GetNode<Player>("/root/Main/Player").Position.y;
 			bonusInstance.Position = new Vector2(RandRange(60, _screenSize.x - 60), player - RandRange(1280,1880));
-
+			UpcomingBonuses.Add(bonusInstance);
 	}
 
 	public void AddBackgroundShapes()

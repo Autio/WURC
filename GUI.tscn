@@ -1,15 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Art/font1.tres" type="DynamicFont" id=1]
+[ext_resource path="res://LevelObjects/NoticeLines.tscn" type="PackedScene" id=2]
 
 [node name="GUI" type="CanvasLayer"]
 
+[node name="GreenNoticeLine" parent="." instance=ExtResource( 2 )]
+position = Vector2( 360, 8 )
+
 [node name="ScoreLabel" type="Label" parent="."]
 anchor_right = 1.0
-margin_left = 1.05945
-margin_top = -0.529724
-margin_right = 1.05951
-margin_bottom = 71.4703
+margin_left = 1.059
+margin_top = 32.0
+margin_right = 1.05908
+margin_bottom = 104.0
 rect_min_size = Vector2( 0, 72 )
 custom_fonts/font = ExtResource( 1 )
 text = "1,000,000,000"

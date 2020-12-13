@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player.cs" type="Script" id=1]
 [ext_resource path="res://car.png" type="Texture" id=2]
 [ext_resource path="res://LevelObjects/Horps.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Art/light_test.png" type="Texture" id=4]
 
-[sub_resource type="Curve" id=2]
+[sub_resource type="Curve" id=1]
 max_value = 3.0
 _data = [ Vector2( 0.0042735, 1.00909 ), 0.0, 0.0, 0, 0, Vector2( 0.113772, 2.1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.136364 ), -2.07507, 0.0, 0, 0 ]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 35.6501
 height = 81.8701
 
@@ -22,7 +23,6 @@ texture = ExtResource( 2 )
 
 [node name="ExhaustParticles" type="CPUParticles2D" parent="."]
 position = Vector2( -23.5801, 79.4549 )
-scale = Vector2( 1, 1 )
 amount = 256
 lifetime = 12.0
 speed_scale = 4.64
@@ -34,13 +34,12 @@ spread = 180.0
 gravity = Vector2( -0.1, 0.2 )
 scale_amount = 12.64
 scale_amount_random = 0.79
-scale_amount_curve = SubResource( 2 )
+scale_amount_curve = SubResource( 1 )
 hue_variation = 0.07
 hue_variation_random = 0.72
 
 [node name="ExhaustParticles2" type="CPUParticles2D" parent="."]
 position = Vector2( 23.58, 79.455 )
-scale = Vector2( 1, 1 )
 amount = 256
 lifetime = 12.0
 speed_scale = 4.64
@@ -52,7 +51,7 @@ spread = 180.0
 gravity = Vector2( 0.1, 0.2 )
 scale_amount = 12.64
 scale_amount_random = 0.79
-scale_amount_curve = SubResource( 2 )
+scale_amount_curve = SubResource( 1 )
 hue_variation = 0.07
 hue_variation_random = 0.72
 
@@ -64,8 +63,18 @@ contact_monitor = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2( 1.85682, -0.972867 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 1.85682, -0.972867 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+visible = false
+position = Vector2( 26.5277, -443.995 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 4 )
+shadow_enabled = true
+shadow_color = Color( 0.717647, 0, 0.917647, 0 )
+shadow_gradient_length = 2.7
+shadow_filter_smooth = 9.5

@@ -18,17 +18,33 @@ public class Bonus : RigidBody2D
 //  {
 //      
 
-   private void _on_Bonus_body_entered(object body)
-{
-	GD.Print("EntereD");
-	
-	if(body is Area2D)
-	// Replace with function body.
+   	private void _on_Bonus_body_entered(object body)
 	{
-		Transform.Scaled(new Vector2(3,3));
+		GD.Print("EntereD");
+		
+		if(body is Area2D)
+		// Replace with function body.
+		{
+			Transform.Scaled(new Vector2(3,3));
+		}
 	}
-}
+
+	// Let the Level know that the thing is now visible by removing this from the upcoming bonuses list
+	private void _on_VisibilityNotifier2D_screen_entered()
+	{
+		GetNode<Level>("/root/Main/Level").UpcomingBonuses.Remove(this);
+	}
+
+
+	private void _on_VisibilityNotifier2D_screen_exited()
+	{
+		
+		QueueFree();
+	}
+
 
 }
+
+
 
 
