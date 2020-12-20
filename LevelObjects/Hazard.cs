@@ -13,9 +13,12 @@ public class Hazard : RigidBody2D
 		
 	}
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+
+private void _on_VisibilityNotifier2D_screen_exited()
+{		
+	GetNode<Level>("/root/Main/Level").UpcomingHazards.Remove(this);
+	// Replace with function body.
 }
+}
+
+

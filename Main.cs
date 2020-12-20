@@ -3,11 +3,18 @@ using System;
 
 // DONE | Road background movement
 // DONE | Road background colour updating in periods
-// TODO | Hazard generation and functionality
+// DONE | Hazard generation and functionality
 // DONE | High score display
 // DONE | Score reset when starting to ride again 
-// TODO | Score display centrally when a ride is finished
-// TODO | Show boosts and hazards as texts
+// DONE | Score display centrally when a ride is finished
+// DONE | Show boosts and hazards as texts
+
+// TODO | Progressive generation of hazards
+// TODO | Better instructions
+// TODO | Implement Scoreboosts
+// TODO | SFX for car
+// TODO | SFX for hazards
+// TODO | SFX for bonuses
 
 public class Main : Node
 {
@@ -123,7 +130,7 @@ public class Main : Node
 		_panelTween.Connect("tween_all_completed", _panelTween, "queue_free");
 
 		_panelTween = new Tween();
-		_panelTween.InterpolateProperty(scorePanel, "rect_size", scorePanel.RectSize, originalScorePanelSize, .4f);
+		_panelTween.InterpolateProperty(scorePanel, "rect_size", scorePanel.RectSize, originalScorePanelSize, .25f);
 		AddChild(_panelTween);
 		_panelTween.Start();
 		_panelTween.Connect("tween_all_completed", _panelTween, "queue_free");

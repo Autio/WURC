@@ -9,7 +9,7 @@ public class Player : Area2D
 	// private int a = 2;
 	// private string b = "text";
 	[Export]
-	public PackedScene BonusEffect;
+	public PackedScene BonusEffect, HazardEffect;
 	
 	private Vector2 _screenSize;
 	private float drag_margin_top = 0.7f;
@@ -54,14 +54,14 @@ public class Player : Area2D
 		{
 			if (Input.IsActionPressed("ui_left"))
 			{
-				power += 0.09f;
+				power += 0.08f;
 				Position -= new Vector2(lateral_speed * delta, 0);
 				
 			}
 			
 			if (Input.IsActionPressed("ui_right") && !Input.IsActionPressed("ui_left"))
 			{
-				power += 0.09f;
+				power += 0.08f;
 				Position += new Vector2(lateral_speed * delta, 0);
 			}
 		}
@@ -72,14 +72,21 @@ public class Player : Area2D
 
 		if (Input.IsActionJustReleased("ui_down"))
 		{
-			GD.Print("Released");
-			driving = true;
+		//	GD.Print("Released");
+			//driving = true;
 		}
 		if (driving)
 		{
 			GetNode<Main>("/root/Main").SetBaseScore((int)distance);
 			velocity = new Vector2(0, power * 60);
 			Position -= velocity * delta;
+			// Extra drag if on the side. Note: Fixed locations, better if dynamic
+			if(Position.x < 60 || Position.x > 660)
+			{
+				power -= (0.1f + power / 150f);
+			}
+			
+			
 			if(power > 70)
 			{
 				power -= (0.5f + power / 150f);
@@ -90,7 +97,7 @@ public class Player : Area2D
 			}
 			else
 			{
-				power -= (0.14f + power / 1000f);
+				power -= (0.105f + power / 750f);
 			}
 			if (power < 1.0f)
 			{
@@ -109,6 +116,11 @@ public class Player : Area2D
 					GD.Print("Creating bonus");
 					GetNode<Level>("/root/Main/Level").CreateBonus();
 					GetNode<Level>("/root/Main/Level").CreateHazard();
+					if (GetNode<Level>("/root/Main/Level").RandRange(0, 10) > 5)
+					{
+						GetNode<Level>("/root/Main/Level").CreateCar();
+					}
+					
 
 					creating = false;
 				}
@@ -198,24 +210,40 @@ private void _on_Player_body_entered(object body)
 				if(b is Hazard)
 				{
 					GD.Print("Hazard hit");
-					// Do something to the player
-					//b.Transform.Scaled(new Vector2(3, 3));
-					// Reduce power
-					//power /= 4;
+
+					if (power < 100)
+					{
+						power *= 0.75f;
+						var hazardInstance = (Label)BonusEffect.Instance();
+						AddChild(hazardInstance);
+
+					}
+					// Show some kind of effect
+				}
+				if (b is Bonus)
+				{
+					GD.Print("Bonus hit");
+					// Only do if power is low
+					if (power < 150)
+					{
+						var bonusInstance = (Label)HazardEffect.Instance();
+						AddChild(bonusInstance);
+						power += 15f;
+					}
 					
 					// Show some kind of effect
 				}
-				if(b is Bonus)
+				if (b is Car)
 				{
-					GD.Print("Bonus hit");
-					var bonusInstance = (Label)BonusEffect.Instance();
-					AddChild(bonusInstance);
-					power += 15f;
-					// Do something to the player
-					//b.Transform.Scaled(new Vector2(3, 3));
-					// Reduce power
-					//power /= 4;
-					
+					// Only do if power is low
+					if (power < 75)
+					{
+						GD.Print("Car hit");
+						var bonusInstance = (Label)HazardEffect.Instance();
+						AddChild(bonusInstance);
+						power *= 0.5f;
+					}
+
 					// Show some kind of effect
 				}
 			}

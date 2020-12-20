@@ -1,24 +1,29 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Art/font1.tres" type="DynamicFont" id=1]
+[ext_resource path="res://StartPanel.cs" type="Script" id=2]
 [ext_resource path="res://Art/GUI.tres" type="StyleBox" id=3]
 [ext_resource path="res://Art/Inconsolata/Inconsolata-Regular.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.305882, 0.321569, 0.380392, 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=8]
+size = 24
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
 size = 64
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=3]
 size = 28
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.305882, 0.321569, 0.380392, 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.431373, 0.666667, 0.431373, 0.607843 )
 corner_radius_top_left = 4
 corner_radius_top_right = 4
@@ -65,12 +70,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="StartPanel" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.784314 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -260.0
+margin_top = 600.0
+margin_right = 260.0
+margin_bottom = 764.0
+custom_styles/panel = ExtResource( 3 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel2" type="Label" parent="StartPanel"]
+anchor_right = 1.0
+margin_right = 3.0
+margin_bottom = 165.0
+rect_min_size = Vector2( 0, 72 )
+custom_fonts/font = SubResource( 8 )
+text = "Roll the mouse wheel to charge the car. 
+Arrow keys to steer."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="StartPanel"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
 [node name="ScoreLabel" type="Label" parent="."]
 anchor_right = 1.0
 margin_top = 34.0
 margin_bottom = 106.0
 rect_min_size = Vector2( 0, 72 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 1
 valign = 1
@@ -85,7 +123,7 @@ margin_top = 72.0
 margin_right = 4.0
 margin_bottom = 144.0
 rect_min_size = Vector2( 0, 72 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 text = "Drive done! 
 Spin the mouse wheel to go again."
 align = 1
@@ -102,7 +140,7 @@ anchor_bottom = 1.0
 margin_left = -360.0
 margin_top = -34.0
 margin_right = 360.0
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -124,7 +162,7 @@ __meta__ = {
 [node name="GreenNoticeLine" type="Panel" parent="."]
 margin_right = 128.0
 margin_bottom = 18.0
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -147,3 +185,4 @@ custom_styles/panel = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="timeout" from="StartPanel/Timer" to="StartPanel" method="_on_Timer_timeout"]

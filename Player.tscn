@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.cs" type="Script" id=1]
 [ext_resource path="res://car.png" type="Texture" id=2]
 [ext_resource path="res://LevelObjects/Horps.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Art/light_test.png" type="Texture" id=4]
+[ext_resource path="res://LevelObjects/HazardEffect.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve" id=1]
 max_value = 3.0
@@ -17,6 +18,7 @@ height = 81.8701
 scale = Vector2( 1.07711, 1.02789 )
 script = ExtResource( 1 )
 BonusEffect = ExtResource( 3 )
+HazardEffect = ExtResource( 5 )
 
 [node name="car" type="Sprite" parent="."]
 texture = ExtResource( 2 )

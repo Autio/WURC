@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Level.cs" type="Script" id=1]
 [ext_resource path="res://LevelObjects/Bonus.tscn" type="PackedScene" id=2]
@@ -6,13 +6,24 @@
 [ext_resource path="res://LevelObjects/Backstripe.tscn" type="PackedScene" id=4]
 [ext_resource path="res://LevelObjects/Sidestripe.tscn" type="PackedScene" id=5]
 [ext_resource path="res://LevelObjects/Laneline.tscn" type="PackedScene" id=6]
+[ext_resource path="res://LevelObjects/Car.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Art/Mushroom_1.png" type="Texture" id=8]
+[ext_resource path="res://Art/Mushroom_3_2.png" type="Texture" id=9]
+[ext_resource path="res://Art/Mushroom_2_1.png" type="Texture" id=10]
+[ext_resource path="res://Art/Mushroom_2.png" type="Texture" id=11]
+[ext_resource path="res://Art/Mushroom_4_2.png" type="Texture" id=12]
+[ext_resource path="res://Art/Mushroom_1_2.png" type="Texture" id=13]
+[ext_resource path="res://Art/Mushroom_3.png" type="Texture" id=14]
+[ext_resource path="res://Mushroomholder2.cs" type="Script" id=15]
+[ext_resource path="res://Mushroomholder.cs" type="Script" id=16]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
 Bonus = ExtResource( 2 )
 Hazard = ExtResource( 3 )
+Car = ExtResource( 7 )
 Backstripe = ExtResource( 4 )
-TarmacColors = PoolColorArray( 0.427451, 0.419608, 0.419608, 1, 0.188235, 0.666667, 0.631373, 1, 0.756863, 0.427451, 0.262745, 1, 0.698039, 0.380392, 0.956863, 1, 0.164706, 0.137255, 0.137255, 1, 1, 0.615686, 0.596078, 1, 0.85098, 0.937255, 0.831373, 1, 0.956863, 0.301961, 0.321569, 0.784314, 0.184314, 0.313726, 0.666667, 1, 0.537255, 0.537255, 0.301961, 1 )
+TarmacColors = PoolColorArray( 0.427451, 0.419608, 0.419608, 1, 0.188235, 0.666667, 0.631373, 1, 0.756863, 0.427451, 0.262745, 1, 0.698039, 0.380392, 0.956863, 1, 0.164706, 0.137255, 0.137255, 1, 1, 0.615686, 0.596078, 1, 0.309804, 0.411765, 0.286275, 1, 0.956863, 0.301961, 0.321569, 0.784314, 0.184314, 0.313726, 0.666667, 1, 0.537255, 0.537255, 0.301961, 1 )
 
 [node name="Tarmac" type="ColorRect" parent="."]
 margin_left = 10.0796
@@ -52,9 +63,9 @@ __meta__ = {
 
 [node name="RightGrass" type="ColorRect" parent="."]
 show_behind_parent = true
-margin_left = 659.045
-margin_top = 1978.1
-margin_right = 699.045
+margin_left = 651.494
+margin_top = 1989.43
+margin_right = 691.494
 margin_bottom = 1.00002e+08
 grow_vertical = 2
 rect_rotation = 180.0
@@ -65,23 +76,23 @@ __meta__ = {
 }
 
 [node name="Laneline" parent="." instance=ExtResource( 6 )]
-position = Vector2( -160, 0 )
+position = Vector2( -155, 0 )
 TrackIncrements = true
 
 [node name="Laneline2" parent="." instance=ExtResource( 6 )]
-position = Vector2( -160, -1408 )
+position = Vector2( -155, -1408 )
 
 [node name="Laneline3" parent="." instance=ExtResource( 6 )]
-position = Vector2( -160, -2816 )
+position = Vector2( -155, -2816 )
 
 [node name="Laneline4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 160, 0 )
+position = Vector2( 155, 0 )
 
 [node name="Laneline5" parent="." instance=ExtResource( 6 )]
-position = Vector2( 160, -1408 )
+position = Vector2( 155, -1408 )
 
 [node name="Laneline6" parent="." instance=ExtResource( 6 )]
-position = Vector2( 160, -2816 )
+position = Vector2( 155, -2816 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = 351.0
@@ -92,3 +103,445 @@ rect_min_size = Vector2( 16, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Mushroomholder" type="Node2D" parent="."]
+script = ExtResource( 16 )
+
+[node name="Mushroom_3" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -92.2715, -294.616 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 5
+texture = ExtResource( 14 )
+
+[node name="Mushroom_1" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -44.4417, -174.562 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 5
+texture = ExtResource( 8 )
+offset = Vector2( -113.008, 78.5269 )
+
+[node name="Mushroom_6" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -101.138, -116.605 )
+scale = Vector2( 0.1, 0.1 )
+z_index = 5
+texture = ExtResource( 8 )
+offset = Vector2( -113.008, 78.5269 )
+flip_h = true
+
+[node name="Mushroom_2" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -86.926, -417.56 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 5
+texture = ExtResource( 11 )
+
+[node name="Mushroom_4_2" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -62.0404, -524.204 )
+scale = Vector2( 0.15, 0.15 )
+z_index = 5
+texture = ExtResource( 12 )
+offset = Vector2( -256, -99.8987 )
+
+[node name="Mushroom_4_5" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -91.7705, -721.612 )
+scale = Vector2( 0.075, 0.075 )
+z_index = 5
+texture = ExtResource( 12 )
+offset = Vector2( -256, -99.8987 )
+
+[node name="Mushroom_4_4" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -51.961, -5.11627 )
+scale = Vector2( 0.15, 0.15 )
+z_index = 5
+texture = ExtResource( 12 )
+offset = Vector2( -256, -99.8987 )
+flip_h = true
+
+[node name="Mushroom_3_2" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -80.2818, -660.141 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 9 )
+
+[node name="Mushroom_3_3" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -118.963, -929.228 )
+scale = Vector2( 0.1, 0.1 )
+z_index = 5
+texture = ExtResource( 9 )
+
+[node name="Mushroom_5" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -80.2817, -894.486 )
+scale = Vector2( 0.14, 0.14 )
+z_index = 5
+texture = ExtResource( 8 )
+
+[node name="Mushroom_2_1" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -67.6824, -1259.86 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 10 )
+flip_h = true
+
+[node name="Mushroom_1_2" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -72.7223, -788.653 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 13 )
+
+[node name="Mushroom_4" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -92.881, -1000.32 )
+scale = Vector2( 0.35, 0.35 )
+z_index = 5
+texture = ExtResource( 14 )
+
+[node name="Mushroom_4_3" type="Sprite" parent="Mushroomholder"]
+position = Vector2( -62.6428, -1126.31 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 12 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Mushroomholder"]
+position = Vector2( 449.492, -1367.95 )
+scale = Vector2( 45.6496, 3.54713 )
+rect = Rect2( -40, -10, 1000, 20 )
+
+[node name="Mushroomholder4" type="Node2D" parent="."]
+position = Vector2( 0, -1480 )
+script = ExtResource( 16 )
+
+[node name="Mushroom_3" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -92.2715, -294.616 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 5
+texture = ExtResource( 14 )
+
+[node name="Mushroom_1" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -44.4417, -174.562 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 5
+texture = ExtResource( 8 )
+offset = Vector2( -113.008, 78.5269 )
+
+[node name="Mushroom_6" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -101.138, -116.605 )
+scale = Vector2( 0.1, 0.1 )
+z_index = 5
+texture = ExtResource( 8 )
+offset = Vector2( -113.008, 78.5269 )
+flip_h = true
+
+[node name="Mushroom_2" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -86.926, -417.56 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 5
+texture = ExtResource( 11 )
+
+[node name="Mushroom_7" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -58.926, -709.56 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 11 )
+
+[node name="Mushroom_4_2" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -62.0404, -524.204 )
+scale = Vector2( 0.15, 0.15 )
+z_index = 5
+texture = ExtResource( 12 )
+offset = Vector2( -256, -99.8987 )
+
+[node name="Mushroom_4_5" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -91.7705, -721.612 )
+scale = Vector2( 0.075, 0.075 )
+z_index = 5
+texture = ExtResource( 12 )
+offset = Vector2( -256, -99.8987 )
+
+[node name="Mushroom_4_4" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -51.961, -5.11627 )
+scale = Vector2( 0.15, 0.15 )
+z_index = 5
+texture = ExtResource( 12 )
+offset = Vector2( -256, -99.8987 )
+flip_h = true
+
+[node name="Mushroom_3_2" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -80.2818, -660.141 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 9 )
+
+[node name="Mushroom_3_3" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -118.963, -929.228 )
+scale = Vector2( 0.1, 0.1 )
+z_index = 5
+texture = ExtResource( 9 )
+
+[node name="Mushroom_5" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -80.2817, -894.486 )
+scale = Vector2( 0.14, 0.14 )
+z_index = 5
+texture = ExtResource( 8 )
+
+[node name="Mushroom_2_1" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -67.6824, -1259.86 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 10 )
+flip_h = true
+
+[node name="Mushroom_1_2" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -72.7223, -788.653 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 13 )
+
+[node name="Mushroom_1_3" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -61.3958, 72.1602 )
+scale = Vector2( 0.1, 0.1 )
+z_index = 5
+texture = ExtResource( 13 )
+flip_h = true
+__meta__ = {
+"_editor_description_": "	"
+}
+
+[node name="Mushroom_4" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -92.881, -1000.32 )
+scale = Vector2( 0.35, 0.35 )
+z_index = 5
+texture = ExtResource( 14 )
+
+[node name="Mushroom_4_3" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -62.6428, -1126.31 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 12 )
+
+[node name="Mushroom_4_6" type="Sprite" parent="Mushroomholder4"]
+position = Vector2( -86.6428, -1410.31 )
+scale = Vector2( 0.15, 0.15 )
+z_index = 5
+texture = ExtResource( 12 )
+flip_h = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Mushroomholder4"]
+position = Vector2( 449.492, -1367.95 )
+scale = Vector2( 45.6496, 3.54713 )
+rect = Rect2( -40, -10, 1000, 20 )
+
+[node name="Mushroomholder2" type="Node2D" parent="."]
+position = Vector2( 719.187, -20.9763 )
+scale = Vector2( -1, 1 )
+script = ExtResource( 15 )
+
+[node name="Mushroom_3" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -92.2715, -294.616 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 2
+texture = ExtResource( 14 )
+
+[node name="Mushroom_1" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -44.4417, -174.562 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 2
+texture = ExtResource( 8 )
+offset = Vector2( -113.008, 78.5269 )
+
+[node name="Mushroom_6" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -101.138, -116.605 )
+scale = Vector2( 0.1, 0.1 )
+z_index = 2
+texture = ExtResource( 8 )
+offset = Vector2( -113.008, 78.5269 )
+flip_h = true
+
+[node name="Mushroom_2" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -86.926, -417.56 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 2
+texture = ExtResource( 11 )
+
+[node name="Mushroom_4_2" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -62.0404, -524.204 )
+scale = Vector2( 0.15, 0.15 )
+z_index = 2
+texture = ExtResource( 12 )
+offset = Vector2( -256, -99.8987 )
+
+[node name="Mushroom_4_5" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -91.7705, -721.612 )
+scale = Vector2( 0.075, 0.075 )
+z_index = 2
+texture = ExtResource( 12 )
+offset = Vector2( -256, -99.8987 )
+
+[node name="Mushroom_4_4" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -51.961, -5.11627 )
+scale = Vector2( 0.15, 0.15 )
+z_index = 2
+texture = ExtResource( 12 )
+offset = Vector2( -256, -99.8987 )
+flip_h = true
+
+[node name="Mushroom_3_2" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -80.2818, -660.141 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 2
+texture = ExtResource( 9 )
+
+[node name="Mushroom_3_4" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -90.2817, -1362.14 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 2
+texture = ExtResource( 9 )
+
+[node name="Mushroom_3_3" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -118.963, -929.228 )
+scale = Vector2( 0.1, 0.1 )
+z_index = 2
+texture = ExtResource( 9 )
+
+[node name="Mushroom_5" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -80.2817, -894.486 )
+scale = Vector2( 0.14, 0.14 )
+z_index = 2
+texture = ExtResource( 8 )
+
+[node name="Mushroom_2_1" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -67.6824, -1259.86 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 2
+texture = ExtResource( 10 )
+flip_h = true
+
+[node name="Mushroom_1_2" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -72.7223, -788.653 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 2
+texture = ExtResource( 13 )
+
+[node name="Mushroom_4" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -92.881, -1000.32 )
+scale = Vector2( 0.35, 0.35 )
+z_index = 2
+texture = ExtResource( 14 )
+
+[node name="Mushroom_4_3" type="Sprite" parent="Mushroomholder2"]
+position = Vector2( -62.6428, -1126.31 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 2
+texture = ExtResource( 12 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Mushroomholder2"]
+position = Vector2( -70.5555, -1302.76 )
+rect = Rect2( -50, -10, 1000, 20 )
+
+[node name="Mushroomholder3" type="Node2D" parent="."]
+position = Vector2( 719.187, -1480 )
+scale = Vector2( -1, 1 )
+script = ExtResource( 15 )
+
+[node name="Mushroom_3" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -92.2715, -294.616 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 5
+texture = ExtResource( 14 )
+
+[node name="Mushroom_1" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -44.4417, -174.562 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 5
+texture = ExtResource( 8 )
+offset = Vector2( -113.008, 78.5269 )
+
+[node name="Mushroom_6" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -101.138, -116.605 )
+scale = Vector2( 0.1, 0.1 )
+z_index = 5
+texture = ExtResource( 8 )
+offset = Vector2( -113.008, 78.5269 )
+flip_h = true
+
+[node name="Mushroom_2" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -86.926, -417.56 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 5
+texture = ExtResource( 11 )
+
+[node name="Mushroom_4_2" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -62.0404, -524.204 )
+scale = Vector2( 0.15, 0.15 )
+z_index = 5
+texture = ExtResource( 12 )
+offset = Vector2( -256, -99.8987 )
+
+[node name="Mushroom_4_5" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -91.7705, -721.612 )
+scale = Vector2( 0.075, 0.075 )
+z_index = 5
+texture = ExtResource( 12 )
+offset = Vector2( -256, -99.8987 )
+
+[node name="Mushroom_4_4" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -51.961, -5.11627 )
+scale = Vector2( 0.15, 0.15 )
+z_index = 5
+texture = ExtResource( 12 )
+offset = Vector2( -256, -99.8987 )
+flip_h = true
+
+[node name="Mushroom_3_2" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -80.2818, -660.141 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 9 )
+
+[node name="Mushroom_3_4" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -90.2817, -1362.14 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 9 )
+
+[node name="Mushroom_3_3" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -118.963, -929.228 )
+scale = Vector2( 0.1, 0.1 )
+z_index = 5
+texture = ExtResource( 9 )
+
+[node name="Mushroom_5" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -80.2817, -894.486 )
+scale = Vector2( 0.14, 0.14 )
+z_index = 5
+texture = ExtResource( 8 )
+
+[node name="Mushroom_2_1" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -67.6824, -1259.86 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 10 )
+flip_h = true
+
+[node name="Mushroom_1_2" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -72.7223, -788.653 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 13 )
+
+[node name="Mushroom_4" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -92.881, -1000.32 )
+scale = Vector2( 0.35, 0.35 )
+z_index = 5
+texture = ExtResource( 14 )
+
+[node name="Mushroom_4_3" type="Sprite" parent="Mushroomholder3"]
+position = Vector2( -62.6428, -1126.31 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 5
+texture = ExtResource( 12 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Mushroomholder3"]
+position = Vector2( -70.5555, -1302.76 )
+rect = Rect2( -50, -10, 1000, 20 )
+[connection signal="screen_exited" from="Mushroomholder/VisibilityNotifier2D" to="Mushroomholder" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="Mushroomholder4/VisibilityNotifier2D" to="Mushroomholder4" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="Mushroomholder2/VisibilityNotifier2D" to="Mushroomholder2" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="Mushroomholder3/VisibilityNotifier2D" to="Mushroomholder3" method="_on_VisibilityNotifier2D_screen_exited"]

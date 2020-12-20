@@ -6,7 +6,7 @@ public class Level : Node2D
 {
 	// Generate the map background and objects
 	[Export]
-	public PackedScene Bonus, Hazard, Backstripe;
+	public PackedScene Bonus, Hazard, Car, Backstripe;
 	[Export]
 	public Color[] TarmacColors;
 	ColorRect Tarmac;
@@ -19,7 +19,9 @@ public class Level : Node2D
 	private Vector2 _screenSize;
 	public List<RigidBody2D> UpcomingBonuses = new List<RigidBody2D>();
 	public List<RigidBody2D> UpcomingHazards = new List<RigidBody2D>();
+	public List<RigidBody2D> UpcomingCars = new List<RigidBody2D>();
 
+	Tween _trackTween;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -29,7 +31,7 @@ public class Level : Node2D
 		GreenNoticeLine = GetNode<Panel>("/root/Main/GUI/GreenNoticeLine");
 		AmberNoticeLine = GetNode<Panel>("/root/Main/GUI/AmberNoticeLine");
 		RedNoticeLine = GetNode<Panel>("/root/Main/GUI/RedNoticeLine");
-		Tarmac.Color = TarmacColors[(int)RandRange(0, TarmacColors.Length)];
+		Tarmac.Color = TarmacColors[0];
 	}
 	// How often do bonuses appear as opposed to hazards?
 
@@ -55,6 +57,15 @@ public class Level : Node2D
 			AmberNoticeLine.RectPosition = (new Vector2(xDiff + UpcomingHazards[0].Position.x - AmberNoticeLine.RectSize.x / 2, AmberNoticeLine.RectPosition.y));
 		}
 
+		if (UpcomingCars.Count > 0)
+		{
+
+			// The difference between the centre X and the camera position needs to offset the guide line drawing
+			float xDiff = _screenSize.x / 2 - GetNode<Camera2D>("/root/Main/Player/Camera2D").GetCameraScreenCenter().x;
+
+			RedNoticeLine.RectPosition = (new Vector2(xDiff + UpcomingCars[0].Position.x - RedNoticeLine.RectSize.x / 2, RedNoticeLine.RectPosition.y));
+		}
+
 		if (Input.IsActionPressed("Spawn"))
 		{
 
@@ -63,7 +74,7 @@ public class Level : Node2D
 		}
 	}
 
-	private float RandRange(float min, float max)
+	public float RandRange(float min, float max)
 	{
 		return (float)_random.NextDouble() * (max - min) + min;
 	}
@@ -73,7 +84,12 @@ public class Level : Node2D
 		trackIncrements++;
 		if(trackIncrements % 8 == 0)
 		{
-			Tarmac.Color = TarmacColors[(int)RandRange(0, TarmacColors.Length)];
+			_trackTween = new Tween();
+			_trackTween.InterpolateProperty(Tarmac, "color", Tarmac.Color, TarmacColors[(int)RandRange(0, TarmacColors.Length)], 1.8f, Tween.TransitionType.Elastic);
+			AddChild(_trackTween);
+			_trackTween.Start();
+			_trackTween.Connect("tween_all_completed", _trackTween, "queue_free");
+			//Tarmac.Color = TarmacColors[(int)RandRange(0, TarmacColors.Length)];
 		}
 	}
 		
@@ -114,26 +130,47 @@ public class Level : Node2D
 			var bonusInstance = (RigidBody2D)Bonus.Instance();
 			AddChild(bonusInstance);
 			float player = GetNode<Player>("/root/Main/Player").Position.y;
-			bonusInstance.Position = new Vector2(RandRange(buffer, _screenSize.x - buffer), player - RandRange(1280,1880));
+			bonusInstance.Position = new Vector2(RandRange(buffer, _screenSize.x - buffer), player - RandRange(1280,2280));
 			UpcomingBonuses.Add(bonusInstance);
 	}
 	public void CreateHazard()
 	{
-		float buffer = 60;
-		// Instantiate bonus
+
 		var hazardInstance = (RigidBody2D)Hazard.Instance();
 		AddChild(hazardInstance);
 		float player = GetNode<Player>("/root/Main/Player").Position.y;
 		// Can be in one of four positions
-		float[] possiblePosition = { 105, 260, 440, 630 };
+		float[] possiblePosition = { 128, 282, 438, 592};
 		int roll = (int)RandRange(0, 4);
-		GD.Print(roll);
 		float xPosition = possiblePosition[roll];
 
-		hazardInstance.Position = new Vector2(xPosition, player - RandRange(1280, 1880));
+		hazardInstance.Position = new Vector2(xPosition, player - RandRange(1280, 2280));
 		UpcomingHazards.Add(hazardInstance);
 	}
 
+	public void CreateCar()
+	{
+
+		var carInstance = (RigidBody2D)Car.Instance();
+		AddChild(carInstance);
+		float player = GetNode<Player>("/root/Main/Player").Position.y;
+		// Can be in one of four positions
+		float[] possiblePosition = { 128, 282, 438, 592};
+		int roll = (int)RandRange(0, 4);
+		float xPosition = possiblePosition[roll];
+		if(roll > 1)
+		{
+			//Car c = carInstance as Car;
+			//c.goingUp = true;
+		
+			//carInstance.GetChild<Sprite>(0).FlipV = true;
+					
+		}
+		carInstance.Position = new Vector2(xPosition, player - RandRange(2280, 4280));
+		UpcomingCars.Add(carInstance);
+		
+	}
+	
 	public void AddBackgroundShapes()
 	{
 		//var backstripe = (Sprite)Backstripe.Instance();
