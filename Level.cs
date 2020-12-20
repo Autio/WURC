@@ -6,7 +6,7 @@ public class Level : Node2D
 {
 	// Generate the map background and objects
 	[Export]
-	public PackedScene Bonus, Hazard, Car, Backstripe;
+	public PackedScene Bonus, Hazard, Car, Backstripe, Star;
 	[Export]
 	public Color[] TarmacColors;
 	ColorRect Tarmac;
@@ -171,6 +171,82 @@ public class Level : Node2D
 		
 	}
 	
+	public void CreateStarLine(int stars = 10, int stagger = 2)
+	{
+
+		// Create an amount of stars in a line on a lane
+		float[] possiblePosition = { 128, 282, 438, 592 };
+		int lane = (int)RandRange(0, 4);
+		float xPosition = possiblePosition[lane];
+		float player = GetNode<Player>("/root/Main/Player").Position.y;
+		Vector2 starLineStartPosition = new Vector2(xPosition, player - RandRange(2000, 2100));
+		Vector2 latestSpawnPosition = new Vector2();
+		float yGap = 80; // How many pixels in between the stars in a single line
+		
+		// can be staggered, if so then the line can be split amongst adjacent lanes. So can go from 0 to 1, but not from 0 to 3
+
+		for (int i = 0; i < stars; i++)
+		{
+			var starInstance = (RigidBody2D)Star.Instance();
+			AddChild(starInstance);
+			latestSpawnPosition = starLineStartPosition + new Vector2(0, i * yGap);
+			starInstance.Position = latestSpawnPosition;
+			
+		}
+
+		int staggersDone = 0;
+
+		while (stagger > 0)
+		{
+			stagger--;
+			staggersDone++;
+
+			// hop lanes
+			if(lane == 0)
+			{
+				lane = 1;
+			} else if (lane == 1)
+			{
+				if(RandRange(0,10) < 5)
+				{
+					lane = 0;
+				} else
+				{
+					lane = 2;
+				}
+			}
+			else if (lane == 2)
+			{
+				if (RandRange(0, 10) < 5)
+				{
+					lane = 1;
+				}
+				else
+				{
+					lane = 3;
+				}
+			}
+			else if (lane == 3)
+			{
+				lane = 2;
+			}
+
+			xPosition = possiblePosition[lane];
+			latestSpawnPosition = new Vector2(xPosition, latestSpawnPosition.y);
+
+			for (int i = 0; i < stars; i++)
+			{
+				var starInstance = (RigidBody2D)Star.Instance();
+				AddChild(starInstance);
+				latestSpawnPosition += new Vector2(0, yGap);
+				starInstance.Position = latestSpawnPosition;
+
+			}
+
+		}
+
+	}
+
 	public void AddBackgroundShapes()
 	{
 		//var backstripe = (Sprite)Backstripe.Instance();

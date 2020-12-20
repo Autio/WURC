@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Level.cs" type="Script" id=1]
 [ext_resource path="res://LevelObjects/Bonus.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Art/Mushroom_3.png" type="Texture" id=14]
 [ext_resource path="res://Mushroomholder2.cs" type="Script" id=15]
 [ext_resource path="res://Mushroomholder.cs" type="Script" id=16]
+[ext_resource path="res://LevelObjects/Star.tscn" type="PackedScene" id=17]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -23,6 +24,7 @@ Bonus = ExtResource( 2 )
 Hazard = ExtResource( 3 )
 Car = ExtResource( 7 )
 Backstripe = ExtResource( 4 )
+Star = ExtResource( 17 )
 TarmacColors = PoolColorArray( 0.427451, 0.419608, 0.419608, 1, 0.188235, 0.666667, 0.631373, 1, 0.756863, 0.427451, 0.262745, 1, 0.698039, 0.380392, 0.956863, 1, 0.164706, 0.137255, 0.137255, 1, 1, 0.615686, 0.596078, 1, 0.309804, 0.411765, 0.286275, 1, 0.956863, 0.301961, 0.321569, 0.784314, 0.184314, 0.313726, 0.666667, 1, 0.537255, 0.537255, 0.301961, 1 )
 
 [node name="Tarmac" type="ColorRect" parent="."]
@@ -63,9 +65,9 @@ __meta__ = {
 
 [node name="RightGrass" type="ColorRect" parent="."]
 show_behind_parent = true
-margin_left = 651.494
-margin_top = 1989.43
-margin_right = 691.494
+margin_left = 650.159
+margin_top = 1988.24
+margin_right = 690.159
 margin_bottom = 1.00002e+08
 grow_vertical = 2
 rect_rotation = 180.0
@@ -86,7 +88,7 @@ position = Vector2( -155, -1408 )
 position = Vector2( -155, -2816 )
 
 [node name="Laneline4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 155, 0 )
+position = Vector2( 153.811, -1.18921 )
 
 [node name="Laneline5" parent="." instance=ExtResource( 6 )]
 position = Vector2( 155, -1408 )

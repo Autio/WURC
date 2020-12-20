@@ -113,21 +113,64 @@ public class Player : Area2D
 			{
 				if (creating)
 				{
-					GD.Print("Creating bonus");
-					GetNode<Level>("/root/Main/Level").CreateBonus();
-					GetNode<Level>("/root/Main/Level").CreateHazard();
-					if (GetNode<Level>("/root/Main/Level").RandRange(0, 10) > 5)
-					{
-						GetNode<Level>("/root/Main/Level").CreateCar();
+					if (GetNode<Level>("/root/Main/Level").RandRange(0, 10) > 4)
+					{ 
+						GetNode<Level>("/root/Main/Level").CreateBonus();
 					}
-					
+					if (dist > 1000)
+					{
+						if (GetNode<Level>("/root/Main/Level").RandRange(0, 10) > 4)
+						{
+							GetNode<Level>("/root/Main/Level").CreateHazard();
+						}
+					}
+										
+					GD.Print(dist);
+					// Don't create cars at the start. But then later on create more
+					if (dist > 2000)
+					{
+						int limit = 7;
+						if( dist > 6000)
+						{
+							limit = 5;
+						}
 
+						if (dist > 20000)
+						{
+							limit = 1;
+						}
+						if (GetNode<Level>("/root/Main/Level").RandRange(0, 10) > limit)
+						{
+							GetNode<Level>("/root/Main/Level").CreateCar();
+
+						}
+					}
+
+					if (GetNode<Level>("/root/Main/Level").RandRange(0, 10) > 2)
+					{
+						int lineLength = 5;
+						int roll = (int)GetNode<Level>("/root/Main/Level").RandRange(0, 10);
+						if (roll > 5)
+						{
+							lineLength = 8;
+						} 
+						if (roll > 8)
+						{
+							lineLength = 12;
+						}
+
+						int stagger = (int)GetNode<Level>("/root/Main/Level").RandRange(0, 3);
+
+						GetNode<Level>("/root/Main/Level").CreateStarLine(lineLength, stagger);
+
+					}
 					creating = false;
 				}
 			} else
 			{
 				creating = true;
 			}
+
 
 			// When the vehicle has stopped
 			if (velocity.Length() <= 0 || velocity.y < 0)
@@ -242,6 +285,22 @@ private void _on_Player_body_entered(object body)
 						var bonusInstance = (Label)HazardEffect.Instance();
 						AddChild(bonusInstance);
 						power *= 0.5f;
+					}
+
+					// Show some kind of effect
+				}
+
+				if (b is Star)
+				{
+					// Only do if power is low
+					if (power < 75)
+					{
+						GD.Print("Star hit");
+						//var bonusInstance = (Label)HazardEffect.Instance();
+						// AddChild(bonusInstance);
+						GetNode<Main>("/root/Main").AddToOtherScore(20000);
+						power += 1f;
+						GetNode<CPUParticles2D>("StarParticles").Emitting = true;
 					}
 
 					// Show some kind of effect

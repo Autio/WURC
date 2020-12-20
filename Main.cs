@@ -23,6 +23,7 @@ public class Main : Node
 	// private string b = "text";
 	int score;
 	int baseScore;
+	int otherScore;
 	int highScore;
 	Label scoreLabel, scoreLabel2;
 	Label highscoreLabel;
@@ -53,12 +54,22 @@ public class Main : Node
 		}
 		UpdateScore();
 	}
+
+	public void AddToOtherScore(int s)
+	{
+		// Score that comes from sources OTHER than distance traveled
+		// Such as stars and bears 
+
+		otherScore += s;
+
+	}
 	
 	public void ResetScore()
 	{
 
 		GD.Print("Resetting score");
 		baseScore = 0;
+		otherScore = 0;
 		score = 0;
 		scoreLabel.Text = score.ToString("N0");
 
@@ -66,7 +77,7 @@ public class Main : Node
 
 	void UpdateScore()
 	{
-		score = baseScore;
+		score = baseScore + otherScore;
 		// add some modifiers to the score
 		scoreLabel.Text = score.ToString("N0");
 		if(score > highScore)
