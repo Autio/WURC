@@ -15,6 +15,7 @@ public class Player : Area2D
 	private float drag_margin_top = 0.7f;
 	private float top_limit = 1000000;
 	int ticker = 0; // how many things have been hit
+	int ticker2 = 0;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -82,6 +83,8 @@ public class Player : Area2D
 			{
 				ToggleExhaust();
 			}
+			GetNode<AudioStreamPlayer>("/root/Main/CarGoingSound").Play();
+
 			GetNode<Main>("/root/Main").GameStart();
 		}
 		if (driving)
@@ -206,6 +209,8 @@ public class Player : Area2D
 			if (velocity.Length() <= 0 || velocity.y < 0)
 			{
 				// The game is over
+				GetNode<AudioStreamPlayer>("/root/Main/CarGoingSound").Stop();
+
 				GetNode<Main>("/root/Main").GameOver();
 				GD.Print("Stopped driving");
 				driving = false;
@@ -227,8 +232,27 @@ public class Player : Area2D
 				if (emb.IsPressed()){
 					if(Input.IsActionPressed("middle_button")){
 						charging = true;
-						if (emb.ButtonIndex == (int)ButtonList.WheelUp){
+						ticker2++;
+
+
+						if (emb.ButtonIndex == (int)ButtonList.WheelUp) {
 							power += 6.0f;
+
+							if (ticker2 % 2 == 0)
+							{
+								GetNode<AudioStreamPlayer>("/root/Main/Tick1").Play();
+
+							} else if (ticker2 % 3 == 0)
+							{
+								GetNode<AudioStreamPlayer>("/root/Main/Tick2").Play();
+							}
+							else if (ticker2 % 4 == 0)
+							{
+								GetNode<AudioStreamPlayer>("/root/Main/Tick3").Play();
+							}
+
+
+
 						}
 						if (emb.ButtonIndex == (int)ButtonList.WheelDown){
 							power -= 6.0f;
@@ -241,7 +265,14 @@ public class Player : Area2D
 					GD.Print("Driving");
 					driving = true;
 					charging = false;
-					if(!exhaust)
+
+					if (power > 10f)
+					{
+						// Car launches
+						GetNode<AudioStreamPlayer>("/root/Main/CarGoingSound").Play();
+					}
+
+					if (!exhaust)
 					{
 						ToggleExhaust();
 					}

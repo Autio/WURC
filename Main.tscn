@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Level.tscn" type="PackedScene" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://Sounds/ESM_Mystical_Power_Up_2_Mobile_App_Game_FX_Sound_Magic_Fantasy_Retro_Classic_Musical_Element_Transition_Chord_Simple_Hit_Designed.wav" type="AudioStream" id=9]
 [ext_resource path="res://Sounds/ESM_Goo_Harvest_1_Mobile_App_Game_FX_Sound_Magic_Fantasy.wav" type="AudioStream" id=10]
 [ext_resource path="res://Sounds/BRS_Human_Fart_Honk_Low.wav" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/SSMiM_Toys_WindupRelease1.wav" type="AudioStream" id=12]
+[ext_resource path="res://Sounds/ASO_foley_click_01.wav" type="AudioStream" id=13]
+[ext_resource path="res://Sounds/ASO_foley_click_05.wav" type="AudioStream" id=14]
+[ext_resource path="res://Sounds/ASO_foley_mouse_click.wav" type="AudioStream" id=15]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.00662252, 0.318182 ), 0.0, 4.94182, 0, 0, Vector2( 0.97351, 1 ), 0.0, 0.0, 0, 0 ]
@@ -113,4 +117,20 @@ stream = ExtResource( 10 )
 stream = ExtResource( 11 )
 
 [node name="Charge" type="AudioStreamPlayer" parent="."]
+
+[node name="CarGoingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -15.0
+
+[node name="Tick1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -15.0
+
+[node name="Tick2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -15.0
+
+[node name="Tick3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -15.0
 [connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]
