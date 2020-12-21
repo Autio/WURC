@@ -46,6 +46,9 @@ public class Level : Node2D
 			float xDiff = _screenSize.x / 2 - GetNode<Camera2D>("/root/Main/Player/Camera2D").GetCameraScreenCenter().x;
 
 			GreenNoticeLine.RectPosition = (new Vector2(xDiff + UpcomingBonuses[0].Position.x - GreenNoticeLine.RectSize.x / 2, GreenNoticeLine.RectPosition.y));
+		} else
+		{
+			GreenNoticeLine.RectPosition = (new Vector2(5000, GreenNoticeLine.RectPosition.y));
 		}
 
 		if (UpcomingHazards.Count > 0)
@@ -55,6 +58,9 @@ public class Level : Node2D
 			float xDiff = _screenSize.x / 2 - GetNode<Camera2D>("/root/Main/Player/Camera2D").GetCameraScreenCenter().x;
 
 			AmberNoticeLine.RectPosition = (new Vector2(xDiff + UpcomingHazards[0].Position.x - AmberNoticeLine.RectSize.x / 2, AmberNoticeLine.RectPosition.y));
+		} else
+		{
+			AmberNoticeLine.RectPosition = (new Vector2(5000, AmberNoticeLine.RectPosition.y));
 		}
 
 		if (UpcomingCars.Count > 0)
@@ -64,7 +70,14 @@ public class Level : Node2D
 			float xDiff = _screenSize.x / 2 - GetNode<Camera2D>("/root/Main/Player/Camera2D").GetCameraScreenCenter().x;
 
 			RedNoticeLine.RectPosition = (new Vector2(xDiff + UpcomingCars[0].Position.x - RedNoticeLine.RectSize.x / 2, RedNoticeLine.RectPosition.y));
+		} else
+		{
+			RedNoticeLine.RectPosition = (new Vector2(5000, RedNoticeLine.RectPosition.y));
 		}
+
+
+		
+
 
 		if (Input.IsActionPressed("Spawn"))
 		{
@@ -130,7 +143,7 @@ public class Level : Node2D
 			var bonusInstance = (RigidBody2D)Bonus.Instance();
 			AddChild(bonusInstance);
 			float player = GetNode<Player>("/root/Main/Player").Position.y;
-			bonusInstance.Position = new Vector2(RandRange(buffer, _screenSize.x - buffer), player - RandRange(1280,2280));
+			bonusInstance.Position = new Vector2(RandRange(buffer, _screenSize.x - buffer), player - RandRange(1280,4280));
 			UpcomingBonuses.Add(bonusInstance);
 	}
 	public void CreateHazard()

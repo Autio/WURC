@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BRS_Human_Fart_Honk_Low.wav-b3a3b46e11983757c02afa09e652c49d.sample"
+
+[deps]
+
+source_file="res://Sounds/BRS_Human_Fart_Honk_Low.wav"
+dest_files=[ "res://.import/BRS_Human_Fart_Honk_Low.wav-b3a3b46e11983757c02afa09e652c49d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

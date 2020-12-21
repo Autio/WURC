@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/BounceTheDreamAway.ogg-efd549b31a157e5d3f5763f09d95e93a.oggstr"
+
+[deps]
+
+source_file="res://Sounds/BounceTheDreamAway.ogg"
+dest_files=[ "res://.import/BounceTheDreamAway.ogg-efd549b31a157e5d3f5763f09d95e93a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

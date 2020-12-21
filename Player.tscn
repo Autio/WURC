@@ -1,26 +1,28 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player.cs" type="Script" id=1]
-[ext_resource path="res://car.png" type="Texture" id=2]
+[ext_resource path="res://Art/Car_Green.png" type="Texture" id=2]
 [ext_resource path="res://LevelObjects/Horps.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Art/light_test.png" type="Texture" id=4]
 [ext_resource path="res://LevelObjects/HazardEffect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Art/path835.png" type="Texture" id=6]
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=1]
 min_value = 1.0
 max_value = 3.0
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 2.01364 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Curve" id=1]
+[sub_resource type="Curve" id=2]
 max_value = 3.0
 _data = [ Vector2( 0.0042735, 1.00909 ), 0.0, 0.0, 0, 0, Vector2( 0.113772, 2.1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.136364 ), -2.07507, 0.0, 0, 0 ]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 35.6501
-height = 81.8701
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 29.7541
+height = 57.1727
 
 [node name="Player" type="Area2D"]
 scale = Vector2( 1.07711, 1.02789 )
+collision_layer = 7
 script = ExtResource( 1 )
 BonusEffect = ExtResource( 3 )
 HazardEffect = ExtResource( 5 )
@@ -28,7 +30,6 @@ HazardEffect = ExtResource( 5 )
 [node name="StarParticles" type="CPUParticles2D" parent="."]
 modulate = Color( 1, 1, 1, 0.941176 )
 position = Vector2( -0.49183, -86.0955 )
-scale = Vector2( 1, 1 )
 emitting = false
 amount = 120
 lifetime = 1.4
@@ -45,14 +46,37 @@ gravity = Vector2( 0, 0 )
 radial_accel = 100.0
 tangential_accel = 100.0
 scale_amount = 5.81
-scale_amount_curve = SubResource( 3 )
+scale_amount_curve = SubResource( 1 )
 color = Color( 1, 0.964706, 0.45098, 1 )
 
+[node name="BonusParticles" type="CPUParticles2D" parent="."]
+modulate = Color( 1, 1, 1, 0.788235 )
+position = Vector2( -0.49183, -86.0955 )
+emitting = false
+amount = 120
+lifetime = 2.2
+one_shot = true
+speed_scale = 4.0
+explosiveness = 0.53
+randomness = 0.31
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 100.0
+direction = Vector2( 1.142, 0.074 )
+spread = 113.28
+gravity = Vector2( 0, -500 )
+radial_accel = 100.0
+tangential_accel = 100.0
+scale_amount = 5.81
+scale_amount_curve = SubResource( 1 )
+color = Color( 0.635294, 1, 0.45098, 1 )
+
 [node name="car" type="Sprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 
 [node name="ExhaustParticles" type="CPUParticles2D" parent="."]
-position = Vector2( -23.5801, 79.4549 )
+position = Vector2( -19.9919, 70.1994 )
 amount = 256
 lifetime = 12.0
 speed_scale = 4.64
@@ -64,12 +88,12 @@ spread = 180.0
 gravity = Vector2( -0.1, 0.2 )
 scale_amount = 12.64
 scale_amount_random = 0.79
-scale_amount_curve = SubResource( 1 )
+scale_amount_curve = SubResource( 2 )
 hue_variation = 0.07
 hue_variation_random = 0.72
 
 [node name="ExhaustParticles2" type="CPUParticles2D" parent="."]
-position = Vector2( 23.58, 79.455 )
+position = Vector2( 19.4397, 68.8979 )
 amount = 256
 lifetime = 12.0
 speed_scale = 4.64
@@ -81,23 +105,55 @@ spread = 180.0
 gravity = Vector2( 0.1, 0.2 )
 scale_amount = 12.64
 scale_amount_random = 0.79
-scale_amount_curve = SubResource( 1 )
+scale_amount_curve = SubResource( 2 )
 hue_variation = 0.07
 hue_variation_random = 0.72
 
+[node name="Shield" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.301961, 0.94902, 1, 0.65098 )
+position = Vector2( -1.06707, 2.71624 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 6 )
+
+[node name="CollisionParticles" type="CPUParticles2D" parent="."]
+modulate = Color( 1, 1, 1, 0.788235 )
+position = Vector2( -0.49183, -86.0955 )
+scale = Vector2( 1, 1 )
+emitting = false
+amount = 160
+lifetime = 4.0
+one_shot = true
+speed_scale = 4.0
+explosiveness = 0.67
+randomness = 0.31
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 75.0
+direction = Vector2( 1.142, 0.074 )
+spread = 180.0
+gravity = Vector2( 0, -750 )
+initial_velocity = 150.0
+radial_accel = 10.0
+tangential_accel = -50.0
+scale_amount = 10.0
+scale_amount_curve = SubResource( 1 )
+color = Color( 0.92549, 0.262745, 0.262745, 1 )
+
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 7
 gravity_scale = 0.0
 continuous_cd = 2
 contacts_reported = 1
 contact_monitor = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2( 1.85682, -0.972867 )
-shape = SubResource( 2 )
+position = Vector2( -1.65237, 1.17217 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( 1.85682, -0.972867 )
-shape = SubResource( 2 )
+position = Vector2( -0.190227, 1.4786 )
+shape = SubResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="."]
 visible = false

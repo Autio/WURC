@@ -32,9 +32,12 @@ public class Main : Node
 
 	Tween _scoreTween, _panelTween;
 
+	AudioStreamPlayer TrackMusic;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		TrackMusic = GetNode<AudioStreamPlayer>("Music");
 		scoreLabel = GetNode<Label>("/root/Main/GUI/ScoreLabel");
 		scoreLabel2 = GetNode<Label>("/root/Main/GUI/ScoreLabel/ScoreLabel2");
 		highscoreLabel = GetNode<Label>("/root/Main/GUI/HighscoreLabel");
@@ -44,6 +47,25 @@ public class Main : Node
 		originalScorePanelSize = scorePanel.RectSize;
 	}
 
+	public override void _Process(float delta)
+	{
+
+		TrackMusic.PitchScale = mapPitch(GetNode<Player>("Player").power);
+
+	}
+
+	float mapPitch(float OldValue, float OldMin = 0, float OldMax = 40, float NewMin = 1f, float NewMax = 1.5f)
+	{
+		if(OldValue > OldMax)
+		{
+			OldValue = OldMax;
+		}
+		float OldRange = (OldMax - OldMin);
+		float NewRange = (NewMax - NewMin);
+		float NewValue = (((OldValue - OldMin) * NewRange) / OldRange) + NewMin;
+
+		return (NewValue);
+	}
 
 	public void SetBaseScore(int s)
 	{

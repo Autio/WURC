@@ -17,7 +17,20 @@ public class Star : RigidBody2D
 	{
 		QueueFree();
 	}
+	
+	private void _on_Area2D_area_shape_entered(int area_id, object area, int area_shape, int self_shape)
+	{
+
+		QueueFree();
+	}
 }
+
+
+
+
+
+
+
 
 
 

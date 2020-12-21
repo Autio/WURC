@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ESM_Ploppy_Power_Up_2_Mobile_App_Game_FX_Sound_Magic_Fantasy_Retro_Classic_Musical_Element_Transition_Chord_Simple_Hit_Designed.wav-b8ffe81f1ac55c90cf0ed2f963ae7828.sample"
+
+[deps]
+
+source_file="res://Sounds/ESM_Ploppy_Power_Up_2_Mobile_App_Game_FX_Sound_Magic_Fantasy_Retro_Classic_Musical_Element_Transition_Chord_Simple_Hit_Designed.wav"
+dest_files=[ "res://.import/ESM_Ploppy_Power_Up_2_Mobile_App_Game_FX_Sound_Magic_Fantasy_Retro_Classic_Musical_Element_Transition_Chord_Simple_Hit_Designed.wav-b8ffe81f1ac55c90cf0ed2f963ae7828.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

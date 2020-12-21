@@ -3,6 +3,9 @@ using System;
 
 public class Car : RigidBody2D
 {
+	[Export]
+	public Texture[] carSprites; 
+	
 	public bool goingUp = false;
 	float speed;
 	Vector2 velocity;
@@ -20,6 +23,10 @@ public class Car : RigidBody2D
 	{
 
 		speed = GetNode<Level>("/root/Main/Level").RandRange(100, 200);
+		
+		GetNode<Sprite>("Sprite").Texture = carSprites[(int)GetNode<Level>("/root/Main/Level").RandRange(0, carSprites.Length)];
+		
+		
 		GD.Print(this.Position.x);
 		if(Position.x > 0)
 		{
@@ -54,7 +61,16 @@ public class Car : RigidBody2D
 //  {
 //      	GetNode<Level>("/root/Main/Level").UpcomingHazards.Remove(this);
 //  }
+	private void _on_Area2D_area_shape_entered(int area_id, object area, int area_shape, int self_shape)
+	{
+		GetNode<Level>("/root/Main/Level").UpcomingCars.Remove(this);
+		QueueFree();
+	}
+
 }
+
+
+
 
 
 

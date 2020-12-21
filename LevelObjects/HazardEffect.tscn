@@ -9,11 +9,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -96.0
-margin_top = -34.0
+margin_top = -34.5613
 margin_right = 96.0
-margin_bottom = 34.0
+margin_bottom = 33.4387
 custom_fonts/font = ExtResource( 1 )
-text = "Hörps!"
+custom_colors/font_color = Color( 1, 0.360784, 0.164706, 1 )
+text = "Ouch!"
+align = 1
+valign = 1
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
